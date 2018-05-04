@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <vector>
 #include <sstream>
+#define MAX_WORD 323577
 #define affiche(x) std::cout<<x<<std::endl
 #define espaces() std::cout<<"\n"<<std::endl
 
@@ -20,7 +21,7 @@ std::string melangerLettre(std::string mot)
 
 	while (mot.size() != 0) // on cree une boucle afin que le programme extrait toutes les lettre de la variable et la met aleatoirement dasn une autre variable
 	{
-		srand(time_t(0)); // fonction aleatoire
+		srand(time_t(nullptr)); // fonction aleatoire
 		positions = rand() % mot.size(); // position bring one letter 
 		melanger += mot.at(positions); // += use to put the letter into their new variable
 		mot.erase(positions, 1); // erased the letter which was bring of the old variable
@@ -37,7 +38,8 @@ void joueurSolo(void)
 	affiche("Vous allez donc jouer avec l'ordinateur bon jeu et que le meilleur gagne :)");
 	affiche("Vous aurez 5 essaie afin de gagner la partie !");
 	int chiffre;
-	int counter = 0, Try = 5;;
+	int counter = 0;
+	int Try = 5;;
 	std::string mots, Wordguess, Guess;
 	std::string motHasard;
 	std::vector <std::string> tableau;
@@ -57,9 +59,9 @@ void joueurSolo(void)
 		{
 			affiche("ERREUR !");
 		}
-	} while (counter != 323577);
-		int srand(time(NULL));
-		chiffre = rand() % 323576; // chiffre au hasard qui va tirer un mot du tablrau aleatoirement
+	} while (counter != MAX_WORD);
+		int srand(unsigned int(time_t(nullptr)));
+		chiffre = rand() % MAX_WORD; // chiffre au hasard qui va tirer un mot du tablrau aleatoirement
 		motHasard = tableau[chiffre]; // la variable qui va contenir la ligne du tableau tirer au hasard
 		Wordguess = melangerLettre(motHasard); // mot melanger
 		espaces();
@@ -92,25 +94,12 @@ void joueurSolo(void)
 	
 
 
-//Just pour espacé lorsque le joueur1 fait deviner un mot au joueur2
+//Just pour espacÃ© lorsque le joueur1 fait deviner un mot au joueur2
 void espaceJeu(void)
 {
-	espaces();
-	espaces();
-	espaces();
-	espaces();
-	espaces();
-	espaces();
-	espaces();
-	espaces();
-	espaces();
-	espaces();
-	espaces();
-	espaces();
-	espaces();
-	espaces();
-	espaces();
-	espaces();
+	for (int i = 0; i < 10; i++){
+		espaces();
+	}
 }
 
 // le coeur du jeu
@@ -129,7 +118,7 @@ void mainGame(void)
 	affiche("A : " << rep1);
 	affiche("B : " << rep2);
 	std::cin >> reponse;
-	std::string *choix(0); // crée un pointeur afin de stocker la reponse du joueur
+	std::string *choix = nullptr; // crÃ©e un pointeur afin de stocker la reponse du joueur
 
 	switch (reponse)
 	{
@@ -168,7 +157,7 @@ void mainGame(void)
 
 			if (motMystere == motDeviner)
 			{
-				affiche("Félicitation vous avez trouver le bon mot !");
+				affiche("FÃ©licitation vous avez trouver le bon mot !");
 			}
 			else
 			{
